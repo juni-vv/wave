@@ -74,8 +74,4 @@ public class Window {
     public GLCapabilities getGlCapabilities() {
         return glCapabilities;
     }
-
-    public boolean isKeyPressed(int key) {
-        return GLFW.glfwGetKey(windowId, key) == 1;
-    }
 }

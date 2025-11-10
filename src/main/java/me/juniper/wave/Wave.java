@@ -3,15 +3,19 @@ package me.juniper.wave;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
+import me.juniper.wave.window.InputManager;
 import me.juniper.wave.window.Window;
 
 public class Wave {
 
     private Window window;
+    private InputManager inputManager;
+
     private WaveLoop waveLoop;
 
     public Wave() {
         window = new Window(1280, 720, "Wave"); // TODO: get values from env file
+        inputManager = new InputManager(window);
 
         waveLoop = new WaveLoop(window, this);
         waveLoop.run();
@@ -20,9 +24,11 @@ public class Wave {
     }
 
     protected void update() {
-        if (window.isKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
+        if (inputManager.isKeyDown(GLFW.GLFW_KEY_ESCAPE))
             waveLoop.stop();
-        }
+
+        if (inputManager.isMouseButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT))
+            System.out.println("X: " + inputManager.getMouseX() + ", Y: " + inputManager.getMouseY() + ".");
     }
 
     protected void render() {
