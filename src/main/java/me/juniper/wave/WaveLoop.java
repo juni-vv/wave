@@ -16,8 +16,14 @@ public class WaveLoop {
     public void run() {
         isRunning = true;
 
+        long lastTime = System.nanoTime();
+
         while (isRunning && !window.shouldClose()) {
-            waveInstance.update();
+            long now = System.nanoTime();
+            float delta = (now - lastTime) / 1_000_000_000f;
+            lastTime = now;
+
+            waveInstance.update(delta);
             waveInstance.render();
 
             window.swapBuffers();

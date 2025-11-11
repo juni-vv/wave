@@ -36,10 +36,10 @@ public class Wave {
         window.dispose();
     }
 
-    protected void update() {
+    protected void update(float dt) {
         // TODO: implement deltatime loplololol
 
-        objectHandler.update(1f / 60f, WIDTH, HEIGHT);
+        objectHandler.update(dt, WIDTH, HEIGHT);
     }
 
     protected void render() {
