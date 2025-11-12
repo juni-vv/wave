@@ -7,17 +7,29 @@ import me.juniper.wave.graphic.Renderer;
 
 public class ObjectTrail extends GameObject {
 
-    private float trailDuration = 0.5f;
+    private float trailDurationInitial;
+    private float trailDurationRemaining;
+    private float alphaInitial;
 
     public ObjectTrail(float x, float y, float width, float height, Color color) {
         super(x, y, width, height, color);
+
+        this.trailDurationInitial = 0.5f;
+        this.trailDurationRemaining = 0.5f;
+
+        this.alphaInitial = color.getAlpha();
+    }
+
+    private void updateAlpha() {
+        color.setAlpha(alphaInitial * (trailDurationRemaining / trailDurationInitial));
     }
 
     @Override
     public void update(float dt, int sWidth, int sHeight) {
-        if (trailDuration > 0) {
-            color.setAlpha(color.getAlpha() - 0.05f);
-            trailDuration -= 3f * dt;
+        if (trailDurationRemaining > 0) {
+            trailDurationRemaining -= 3f * dt;
+
+            updateAlpha();
         }
     }
 
@@ -32,11 +44,12 @@ public class ObjectTrail extends GameObject {
     }
 
     public void setTrailDuration(float trailDuration) {
-        this.trailDuration = trailDuration;
+        this.trailDurationInitial = trailDuration;
+        this.trailDurationRemaining = trailDuration;
     }
 
     public boolean shouldDie() {
-        return trailDuration <= 0;
+        return trailDurationRemaining <= 0;
     }
 
 }
