@@ -1,5 +1,7 @@
 package me.juniper.wave.object.base;
 
+import java.util.Optional;
+
 import me.juniper.wave.graphic.Color;
 import me.juniper.wave.graphic.Renderer;
 
@@ -15,6 +17,14 @@ public abstract class GameObject {
         this.width = width;
         this.height = height;
         this.color = color;
+    }
+
+    public Optional<GameObject> objectTrail() {
+        if (!(this instanceof ObjectTrail)) {
+            return Optional.of(new ObjectTrail(x, y, width, height, color.copy()));
+        }
+
+        return Optional.empty();
     }
 
     public abstract void update(float dt, int sWidth, int sHeight);

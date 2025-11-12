@@ -10,7 +10,9 @@ import me.juniper.wave.window.InputManager;
 
 public class ObjectHandler {
 
+    private final List<GameObject> addQueue = new ArrayList<GameObject>();
     private final List<GameObject> gameObjects = new ArrayList<GameObject>();
+    private final List<GameObject> removeQueue = new ArrayList<GameObject>();
 
     private InputManager inputManager;
 
@@ -29,11 +31,20 @@ public class ObjectHandler {
     public void update(float dt, int sWidth, int sHeight) {
         for (GameObject gameObject : gameObjects) {
             gameObject.update(dt, sWidth, sHeight);
+            gameObject.objectTrail().ifPresent(addQueue::add);
 
-            if (gameObject instanceof PlayerObject playerObject) {
+            if (gameObject instanceof PlayerObject playerObject)
                 playerObject.handleInput(inputManager);
-            }
+
+            if (gameObject instanceof ObjectTrail trail)
+                if (trail.shouldDie())
+                    removeQueue.add(gameObject);
         }
+
+        gameObjects.removeAll(removeQueue);
+        gameObjects.addAll(addQueue);
+        addQueue.clear();
+        removeQueue.clear();
     }
 
     public void render(Renderer renderer) {

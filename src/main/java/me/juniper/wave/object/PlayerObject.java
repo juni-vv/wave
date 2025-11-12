@@ -9,7 +9,7 @@ import me.juniper.wave.window.InputManager;
 
 public class PlayerObject extends GameObject {
 
-    private float speed = 0.5f;
+    private float speed = 0.25f;
 
     public PlayerObject(float x, float y, float width, float height, Color color) {
         super(x, y, width, height, color);

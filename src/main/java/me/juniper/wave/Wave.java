@@ -37,8 +37,6 @@ public class Wave {
     }
 
     protected void update(float dt) {
-        // TODO: implement deltatime loplololol
-
         objectHandler.update(dt, WIDTH, HEIGHT);
     }
 

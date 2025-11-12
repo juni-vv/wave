@@ -90,4 +90,24 @@ public class Color {
         return a;
     }
 
+    public void setRed(float r) {
+        this.r = r;
+    }
+
+    public void setGreen(float g) {
+        this.g = g;
+    }
+
+    public void setBlue(float b) {
+        this.b = b;
+    }
+
+    public void setAlpha(float a) {
+        this.a = a;
+    }
+
+    public Color copy() {
+        return new Color(r, g, b, a);
+    }
+
 }
