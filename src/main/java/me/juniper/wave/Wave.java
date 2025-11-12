@@ -2,12 +2,11 @@ package me.juniper.wave;
 
 import org.lwjgl.opengl.GL11;
 
-import me.juniper.wave.graphic.Color;
 import me.juniper.wave.graphic.Renderer;
-import me.juniper.wave.object.PlayerObject;
+import me.juniper.wave.graphic.Window;
 import me.juniper.wave.object.base.ObjectHandler;
-import me.juniper.wave.window.InputManager;
-import me.juniper.wave.window.Window;
+import me.juniper.wave.ui.management.InputManager;
+import me.juniper.wave.util.Color;
 
 public class Wave {
 
@@ -27,8 +26,6 @@ public class Wave {
         renderer = new Renderer(WIDTH, HEIGHT);
 
         objectHandler = new ObjectHandler(inputManager);
-
-        objectHandler.addObject(new PlayerObject(0f, 0f, 0.04f, 0.04f, new Color(255, 255, 255)));
 
         waveLoop = new WaveLoop(window, this);
         waveLoop.run();

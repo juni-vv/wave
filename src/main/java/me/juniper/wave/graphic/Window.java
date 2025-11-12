@@ -1,4 +1,4 @@
-package me.juniper.wave.window;
+package me.juniper.wave.graphic;
 
 import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;

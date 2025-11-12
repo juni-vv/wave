@@ -2,8 +2,8 @@ package me.juniper.wave.object.base;
 
 import org.lwjgl.opengl.GL11;
 
-import me.juniper.wave.graphic.Color;
 import me.juniper.wave.graphic.Renderer;
+import me.juniper.wave.util.Color;
 
 public class ObjectTrail extends GameObject {
 

@@ -2,10 +2,10 @@ package me.juniper.wave.object;
 
 import org.lwjgl.glfw.GLFW;
 
-import me.juniper.wave.graphic.Color;
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.object.base.GameObject;
-import me.juniper.wave.window.InputManager;
+import me.juniper.wave.ui.management.InputManager;
+import me.juniper.wave.util.Color;
 
 public class PlayerObject extends GameObject {
 

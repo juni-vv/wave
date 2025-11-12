@@ -2,6 +2,8 @@ package me.juniper.wave.graphic;
 
 import org.lwjgl.opengl.GL11;
 
+import me.juniper.wave.util.Color;
+
 public class Renderer {
 
     private int screenWidth, screenHeight;

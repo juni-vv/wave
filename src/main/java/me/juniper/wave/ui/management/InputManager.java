@@ -1,7 +1,9 @@
-package me.juniper.wave.window;
+package me.juniper.wave.ui.management;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWCursorPosCallback;
+
+import me.juniper.wave.graphic.Window;
 
 public class InputManager {
 

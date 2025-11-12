@@ -2,8 +2,8 @@ package me.juniper.wave.object.base;
 
 import java.util.Optional;
 
-import me.juniper.wave.graphic.Color;
 import me.juniper.wave.graphic.Renderer;
+import me.juniper.wave.util.Color;
 
 public abstract class GameObject {
 

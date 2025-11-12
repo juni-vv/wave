@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.object.PlayerObject;
-import me.juniper.wave.window.InputManager;
+import me.juniper.wave.ui.management.InputManager;
 
 public class ObjectHandler {
 

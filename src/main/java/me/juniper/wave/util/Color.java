@@ -1,4 +1,4 @@
-package me.juniper.wave.graphic;
+package me.juniper.wave.util;
 
 public class Color {
 

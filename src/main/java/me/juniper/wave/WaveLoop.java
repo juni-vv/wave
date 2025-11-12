@@ -1,6 +1,6 @@
 package me.juniper.wave;
 
-import me.juniper.wave.window.Window;
+import me.juniper.wave.graphic.Window;
 
 public class WaveLoop {
 
