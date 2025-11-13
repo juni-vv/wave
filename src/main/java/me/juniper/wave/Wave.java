@@ -5,7 +5,9 @@ import org.lwjgl.opengl.GL11;
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.graphic.Window;
 import me.juniper.wave.object.base.ObjectHandler;
+import me.juniper.wave.ui.Button;
 import me.juniper.wave.ui.management.InputManager;
+import me.juniper.wave.ui.management.UIManager;
 import me.juniper.wave.util.Color;
 
 public class Wave {
@@ -18,14 +20,20 @@ public class Wave {
     private Renderer renderer;
 
     private WaveLoop waveLoop;
+
+    private UIManager uiManager;
     private ObjectHandler objectHandler;
 
     public Wave() {
         window = new Window(WIDTH, HEIGHT, "Wave"); // TODO: get values from env file
         inputManager = new InputManager(window);
-        renderer = new Renderer(WIDTH, HEIGHT);
+        renderer = new Renderer();
 
+        uiManager = new UIManager(inputManager);
         objectHandler = new ObjectHandler(inputManager);
+
+        Button testButton = new Button(0.4f, 0.4f, 0.2f, 0.1f);
+        uiManager.addElement(testButton, 1);
 
         waveLoop = new WaveLoop(window, this);
         waveLoop.run();
@@ -39,8 +47,11 @@ public class Wave {
 
     protected void render() {
         renderer.clear(new Color(0x000));
+
         GL11.glLoadIdentity();
+
         objectHandler.render(renderer);
+        uiManager.render(renderer);
     }
 
 }

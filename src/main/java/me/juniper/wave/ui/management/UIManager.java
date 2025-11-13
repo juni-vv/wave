@@ -5,11 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.juniper.wave.graphic.Renderer;
+
 public class UIManager {
 
     private final Map<Integer, List<UIElement>> layers = new HashMap<>();
 
+    private InputManager inputManager;
+
+    public UIManager(InputManager inputManager) {
+        this.inputManager = inputManager;
+    }
+
     public void addElement(UIElement element, int layer) {
+        element.setInputManager(inputManager);
         layers.computeIfAbsent(layer, l -> new ArrayList<>()).add(element);
     }
 
@@ -26,6 +35,14 @@ public class UIManager {
     public void removeElement(UIElement element) {
         layers.values().forEach(list -> list.remove(element));
         layers.entrySet().removeIf(entry -> entry.getValue().isEmpty());
+    }
+
+    public void render(Renderer renderer) {
+        layers.keySet().stream().sorted().forEach(layerIndex -> {
+            List<UIElement> layerList = layers.get(layerIndex);
+            for (UIElement element : layerList)
+                element.render(renderer);
+        });
     }
 
     public void clear() {

@@ -12,7 +12,14 @@ public class Button extends UIElement {
 
     @Override
     public void render(Renderer renderer) {
-        renderer.drawSquare(x, y, width, height, new Color(0xFFF));
+
+        if (isMouseOver()) {
+            System.out.println("mouse over");
+            renderer.drawSquare(x - 0.1f, y - 0.1f, width + 0.2f, height + 0.2f, new Color((short) 0xFFF));
+        } else {
+            System.out.println("button x: " + x + ", y: " + y);
+            renderer.drawSquare(x, y, width, height, new Color((short) 0xFFF));
+        }
     }
 
 }

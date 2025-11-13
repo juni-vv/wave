@@ -74,4 +74,19 @@ public class Window {
     public GLCapabilities getGlCapabilities() {
         return glCapabilities;
     }
+
+    public int getWidth() {
+        int[] w = new int[1];
+        int[] h = new int[1];
+        GLFW.glfwGetFramebufferSize(windowId, w, h);
+        return w[0];
+    }
+
+    public int getHeight() {
+        int[] w = new int[1];
+        int[] h = new int[1];
+        GLFW.glfwGetFramebufferSize(windowId, w, h);
+        return h[0];
+    }
+
 }

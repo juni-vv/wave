@@ -33,12 +33,12 @@ public class InputManager {
         return GLFW.glfwGetMouseButton(window.getWindowId(), button) == 1;
     }
 
-    public double getMouseX() {
-        return mouseX;
+    public float getMouseX() {
+        return (float) (mouseX / window.getWidth());
     }
 
-    public double getMouseY() {
-        return mouseY;
+    public float getMouseY() {
+        return (float) (mouseY / window.getHeight());
     }
 
     public void dispose() {

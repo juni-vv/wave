@@ -5,22 +5,14 @@ import org.lwjgl.opengl.GL11;
 import me.juniper.wave.util.Color;
 
 public class Renderer {
-
-    private int screenWidth, screenHeight;
-
-    public Renderer(int screenWidth, int screenHeight) {
-        this.screenWidth = screenWidth;
-        this.screenHeight = screenHeight;
-
+    public Renderer() {
         setupProjection();
     }
 
     private void setupProjection() {
-        float aspectRatio = (float) screenWidth / screenHeight;
-
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0, 1, 1 / aspectRatio, 0, -1, 1);
+        GL11.glOrtho(0, 1, 1, 0, -1, 1);
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glLoadIdentity();
     }
