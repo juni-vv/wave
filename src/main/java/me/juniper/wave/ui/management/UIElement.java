@@ -7,11 +7,15 @@ public abstract class UIElement {
     protected float x, y, width, height;
     protected InputManager inputManager;
 
+    protected float hoverGrowFactor;
+    protected boolean hoverGrowActive = false;
+
     public UIElement(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.hoverGrowFactor = 0.0f;
     }
 
     protected void setInputManager(InputManager inputManager) {
@@ -21,10 +25,20 @@ public abstract class UIElement {
     public abstract void render(Renderer renderer);
 
     public boolean isMouseOver() {
-        System.out.println("X: " + inputManager.getMouseX() + ", Y:" + inputManager.getMouseY());
+        double mx = inputManager.getMouseX();
+        double my = inputManager.getMouseY();
 
-        return inputManager.getMouseX() >= x && inputManager.getMouseX() <= x + width && inputManager.getMouseY() >= y
-                && inputManager.getMouseY() <= y + height;
+        if (hoverGrowActive) {
+            double gx = hoverGrowFactor / 2.0;
+
+            boolean insideX = mx >= (x - gx) && mx <= (x + width + gx);
+            boolean insideY = my >= (y - gx) && my <= (y + height + gx);
+
+            if (insideX && insideY)
+                return true;
+        }
+
+        return mx >= x && mx <= x + width && my >= y && my <= y + height;
     }
 
 }

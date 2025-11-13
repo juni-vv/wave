@@ -8,16 +8,17 @@ public class Button extends UIElement {
 
     public Button(float x, float y, float width, float height) {
         super(x, y, width, height);
+        hoverGrowFactor = 0.1f;
     }
 
     @Override
     public void render(Renderer renderer) {
-
         if (isMouseOver()) {
-            System.out.println("mouse over");
-            renderer.drawSquare(x - 0.1f, y - 0.1f, width + 0.2f, height + 0.2f, new Color((short) 0xFFF));
+            hoverGrowActive = true;
+            renderer.drawSquare(x - (hoverGrowFactor / 2), y - (hoverGrowFactor / 2), width + hoverGrowFactor,
+                    height + hoverGrowFactor, new Color((short) 0xFFF));
         } else {
-            System.out.println("button x: " + x + ", y: " + y);
+            hoverGrowActive = false;
             renderer.drawSquare(x, y, width, height, new Color((short) 0xFFF));
         }
     }
