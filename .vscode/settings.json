@@ -1,3 +1,11 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.referencedLibraries": {
+        "include": [
+            "libs/java-desktop.jar"
+        ],
+        "sources": {
+            "libs/java-desktop.jar": "libs/java-desktop.jar"
+        }
+    }
 }

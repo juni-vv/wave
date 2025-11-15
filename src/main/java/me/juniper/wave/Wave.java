@@ -5,11 +5,9 @@ import org.lwjgl.opengl.GL11;
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.graphic.Window;
 import me.juniper.wave.object.base.ObjectHandler;
-import me.juniper.wave.ui.Button;
 import me.juniper.wave.ui.management.InputManager;
 import me.juniper.wave.ui.management.UIManager;
 import me.juniper.wave.util.Color;
-import me.juniper.wave.util.Dimension;
 
 public class Wave {
 
@@ -33,9 +31,11 @@ public class Wave {
         uiManager = new UIManager(inputManager);
         objectHandler = new ObjectHandler(inputManager);
 
-        Dimension buttonDimension = new Dimension(0.4f, 0.4f, 0.2f, 0.1f);
-        Button testButton = new Button(buttonDimension);
-        uiManager.addElement(testButton, 1);
+        /* TEMPORARY */
+        // Dimension buttonDimension = new Dimension(0.4f, 0.4f, 0.2f, 0.1f);
+        // Button testButton = new Button(buttonDimension, "Test");
+        // uiManager.addElement(testButton, 1);
+        /* * */
 
         waveLoop = new WaveLoop(window, this);
         waveLoop.run();
