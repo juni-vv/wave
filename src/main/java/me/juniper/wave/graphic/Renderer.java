@@ -23,11 +23,11 @@ public class Renderer {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
     }
 
-    public void drawSquare(Dimension dimension, Color color) {
-        drawSquare(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight(), color);
+    public void drawRectangle(Dimension dimension, Color color) {
+        drawRectangle(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight(), color);
     }
 
-    public void drawSquare(float x, float y, float width, float height, Color color) {
+    public void drawRectangle(float x, float y, float width, float height, Color color) {
         GL11.glColor4f(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glVertex2f(x, y);

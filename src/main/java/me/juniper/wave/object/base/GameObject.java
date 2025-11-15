@@ -4,25 +4,24 @@ import java.util.Optional;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.util.Color;
+import me.juniper.wave.util.Dimension;
 
 public abstract class GameObject {
 
-    protected float x, y, width, height;
+    protected Dimension dimension;
     protected float dx, dy;
+    protected float aspectRatio;
     protected Color color;
 
-    public GameObject(float x, float y, float width, float height, Color color) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public GameObject(Dimension dimension, Color color, float aspectRatio) {
+        this.dimension = dimension;
         this.color = color;
+        this.aspectRatio = aspectRatio;
     }
 
     public Optional<GameObject> objectTrail() {
-        if (!(this instanceof ObjectTrail)) {
-            return Optional.of(new ObjectTrail(x, y, width, height, color.copy()));
-        }
+        if (!(this instanceof ObjectTrail))
+            return Optional.of(new ObjectTrail(dimension, color.copy(), aspectRatio));
 
         return Optional.empty();
     }
@@ -31,20 +30,8 @@ public abstract class GameObject {
 
     public abstract void render(Renderer renderer);
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public float getWidth() {
-        return width;
-    }
-
-    public float getHeight() {
-        return height;
+    public Dimension getDimension() {
+        return dimension;
     }
 
     public Color getColor() {

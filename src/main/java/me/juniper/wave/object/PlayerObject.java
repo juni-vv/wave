@@ -6,13 +6,14 @@ import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.object.base.GameObject;
 import me.juniper.wave.ui.management.InputManager;
 import me.juniper.wave.util.Color;
+import me.juniper.wave.util.Dimension;
 
 public class PlayerObject extends GameObject {
 
     private float speed = 0.25f;
 
-    public PlayerObject(float x, float y, float width, float height, Color color) {
-        super(x, y, width, height, color);
+    public PlayerObject(Dimension dimension, Color color, float aspectRatio) {
+        super(dimension, color, aspectRatio);
     }
 
     public void handleInput(InputManager inputManager) {
@@ -41,18 +42,18 @@ public class PlayerObject extends GameObject {
 
     @Override
     public void update(float dt, int sWidth, int sHeight) {
-        x += dx * dt;
-        y += dy * dt;
+        if (dimension.getX() < 0 || dimension.getX() + dimension.getWidth() > sWidth)
+            dx = 0;
+        if (dimension.getY() < 0 || dimension.getY() + dimension.getHeight() > sHeight)
+            dy = 0;
 
-        if (x < 0 || x + width > sWidth)
-            dx = -dx;
-        if (y < 0 || y + height > sHeight)
-            dy = -dy;
+        dimension.setX(dimension.getX() + dx * dt);
+        dimension.setY(dimension.getY() + dy * dt);
     }
 
     @Override
     public void render(Renderer renderer) {
-        renderer.drawSquare(x, y, width, height, color);
+        renderer.drawRectangle(dimension.aspectRatio(aspectRatio), color);
     }
 
 }

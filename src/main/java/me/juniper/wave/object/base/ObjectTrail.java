@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.util.Color;
+import me.juniper.wave.util.Dimension;
 
 public class ObjectTrail extends GameObject {
 
@@ -11,8 +12,8 @@ public class ObjectTrail extends GameObject {
     private float trailDurationRemaining;
     private float alphaInitial;
 
-    public ObjectTrail(float x, float y, float width, float height, Color color) {
-        super(x, y, width, height, color);
+    public ObjectTrail(Dimension dimension, Color color, float aspectRatio) {
+        super(dimension, color, aspectRatio);
 
         this.trailDurationInitial = 0.5f;
         this.trailDurationRemaining = 0.5f;
@@ -38,7 +39,7 @@ public class ObjectTrail extends GameObject {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        renderer.drawSquare(x, y, width, height, color);
+        renderer.drawRectangle(dimension.aspectRatio(aspectRatio), color);
 
         GL11.glDisable(GL11.GL_BLEND);
     }

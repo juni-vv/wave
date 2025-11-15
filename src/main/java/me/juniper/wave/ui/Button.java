@@ -16,10 +16,10 @@ public class Button extends UIElement {
     public void render(Renderer renderer) {
         if (isMouseOver()) {
             hoverGrowActive = true;
-            renderer.drawSquare(dimension.getDimension(hoverGrowFactor), new Color((short) 0xFFF));
+            renderer.drawRectangle(dimension.resize(hoverGrowFactor), new Color((short) 0xFFF));
         } else {
             hoverGrowActive = false;
-            renderer.drawSquare(dimension, new Color((short) 0xFFF));
+            renderer.drawRectangle(dimension, new Color((short) 0xFFF));
         }
     }
 

@@ -11,7 +11,7 @@ public class Dimension {
         this.height = height;
     }
 
-    public Dimension getDimension(float dimensionGrowFactor) {
+    public Dimension resize(float dimensionGrowFactor) {
         if (dimensionGrowFactor < 0)
             dimensionGrowFactor = Math.abs(dimensionGrowFactor);
 
@@ -20,6 +20,18 @@ public class Dimension {
                     width + dimensionGrowFactor, height + dimensionGrowFactor);
 
         return this;
+    }
+
+    public Dimension aspectRatio(float aspectRatio) {
+        System.out.println(aspectRatio);
+
+        if (aspectRatio == 0.0f)
+            return this;
+
+        if (aspectRatio > 1.0f)
+            return new Dimension(x, y, width / aspectRatio, height);
+
+        return new Dimension(x, y, width, height * aspectRatio);
     }
 
     public float getX() {
@@ -36,6 +48,22 @@ public class Dimension {
 
     public float getHeight() {
         return height;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
     }
 
 }
