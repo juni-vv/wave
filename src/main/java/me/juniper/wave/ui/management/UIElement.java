@@ -1,20 +1,18 @@
 package me.juniper.wave.ui.management;
 
 import me.juniper.wave.graphic.Renderer;
+import me.juniper.wave.util.Dimension;
 
 public abstract class UIElement {
 
-    protected float x, y, width, height;
+    protected Dimension dimension;
     protected InputManager inputManager;
 
     protected float hoverGrowFactor;
     protected boolean hoverGrowActive = false;
 
-    public UIElement(float x, float y, float width, float height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public UIElement(Dimension dimension) {
+        this.dimension = dimension;
         this.hoverGrowFactor = 0.0f;
     }
 
@@ -31,14 +29,15 @@ public abstract class UIElement {
         if (hoverGrowActive) {
             double gx = hoverGrowFactor / 2.0;
 
-            boolean insideX = mx >= (x - gx) && mx <= (x + width + gx);
-            boolean insideY = my >= (y - gx) && my <= (y + height + gx);
+            boolean insideX = mx >= (dimension.getX() - gx) && mx <= (dimension.getX() + dimension.getWidth() + gx);
+            boolean insideY = my >= (dimension.getY() - gx) && my <= (dimension.getY() + dimension.getHeight() + gx);
 
             if (insideX && insideY)
                 return true;
         }
 
-        return mx >= x && mx <= x + width && my >= y && my <= y + height;
+        return mx >= dimension.getX() && mx <= dimension.getX() + dimension.getWidth() && my >= dimension.getY()
+                && my <= dimension.getY() + dimension.getHeight();
     }
 
 }

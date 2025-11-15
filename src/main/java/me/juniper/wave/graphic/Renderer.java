@@ -3,6 +3,7 @@ package me.juniper.wave.graphic;
 import org.lwjgl.opengl.GL11;
 
 import me.juniper.wave.util.Color;
+import me.juniper.wave.util.Dimension;
 
 public class Renderer {
     public Renderer() {
@@ -20,6 +21,10 @@ public class Renderer {
     public void clear(Color color) {
         GL11.glClearColor(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+    }
+
+    public void drawSquare(Dimension dimension, Color color) {
+        drawSquare(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight(), color);
     }
 
     public void drawSquare(float x, float y, float width, float height, Color color) {

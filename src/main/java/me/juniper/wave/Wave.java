@@ -9,6 +9,7 @@ import me.juniper.wave.ui.Button;
 import me.juniper.wave.ui.management.InputManager;
 import me.juniper.wave.ui.management.UIManager;
 import me.juniper.wave.util.Color;
+import me.juniper.wave.util.Dimension;
 
 public class Wave {
 
@@ -32,7 +33,8 @@ public class Wave {
         uiManager = new UIManager(inputManager);
         objectHandler = new ObjectHandler(inputManager);
 
-        Button testButton = new Button(0.4f, 0.4f, 0.2f, 0.1f);
+        Dimension buttonDimension = new Dimension(0.4f, 0.4f, 0.2f, 0.1f);
+        Button testButton = new Button(buttonDimension);
         uiManager.addElement(testButton, 1);
 
         waveLoop = new WaveLoop(window, this);
