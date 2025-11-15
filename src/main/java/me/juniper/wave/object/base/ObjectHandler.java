@@ -21,11 +21,11 @@ public class ObjectHandler {
     }
 
     public void addObject(GameObject gameObject) {
-        gameObjects.add(gameObject);
+        addQueue.add(gameObject);
     }
 
     public void removeObject(GameObject gameObject) {
-        gameObjects.remove(gameObject);
+        removeQueue.remove(gameObject);
     }
 
     public void update(float dt, int sWidth, int sHeight) {

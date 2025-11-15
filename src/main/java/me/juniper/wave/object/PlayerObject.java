@@ -20,13 +20,23 @@ public class PlayerObject extends GameObject {
         dy = 0;
 
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_W))
-            dy = -speed;
+            dy = -1;
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_A))
-            dx = -speed;
+            dx = -1;
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_S))
-            dy = speed;
+            dy = 1;
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_D))
-            dx = speed;
+            dx = 1;
+
+        if (dx != 0 && dy != 0) {
+            float diff = (float) Math.sqrt(Math.abs(dx * dx) + Math.abs(dy * dy));
+            dx /= diff;
+            dy /= diff;
+        }
+
+        dx *= speed;
+        dy *= speed;
+
     }
 
     @Override

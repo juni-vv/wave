@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.graphic.Window;
+import me.juniper.wave.object.PlayerObject;
 import me.juniper.wave.object.base.ObjectHandler;
 import me.juniper.wave.ui.management.InputManager;
 import me.juniper.wave.ui.management.UIManager;
@@ -11,7 +12,7 @@ import me.juniper.wave.util.Color;
 
 public class Wave {
 
-    private final int WIDTH = 1280;
+    private final int WIDTH = 720;
     private final int HEIGHT = 720;
 
     private Window window;
@@ -30,6 +31,8 @@ public class Wave {
 
         uiManager = new UIManager(inputManager);
         objectHandler = new ObjectHandler(inputManager);
+
+        objectHandler.addObject(new PlayerObject(0f, 0f, 0.04f, 0.04f, new Color(255, 255, 255)));
 
         /* TEMPORARY */
         // Dimension buttonDimension = new Dimension(0.4f, 0.4f, 0.2f, 0.1f);
