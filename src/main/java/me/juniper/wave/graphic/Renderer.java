@@ -27,6 +27,8 @@ public class Renderer {
         drawRectangle(dimension.getX(), dimension.getY(), dimension.getWidth(), dimension.getHeight(), color);
     }
 
+    /* Draw square function that temporarily changes the ortho ??? idk */
+
     public void drawRectangle(float x, float y, float width, float height, Color color) {
         GL11.glColor4f(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
         GL11.glBegin(GL11.GL_QUADS);

@@ -23,8 +23,6 @@ public class Dimension {
     }
 
     public Dimension aspectRatio(float aspectRatio) {
-        System.out.println(aspectRatio);
-
         if (aspectRatio == 0.0f)
             return this;
 
@@ -32,6 +30,10 @@ public class Dimension {
             return new Dimension(x, y, width / aspectRatio, height);
 
         return new Dimension(x, y, width, height * aspectRatio);
+    }
+
+    public Dimension copy() {
+        return new Dimension(x, y, width, height);
     }
 
     public float getX() {

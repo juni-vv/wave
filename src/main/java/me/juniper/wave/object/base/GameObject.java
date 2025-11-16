@@ -21,7 +21,7 @@ public abstract class GameObject {
 
     public Optional<GameObject> objectTrail() {
         if (!(this instanceof ObjectTrail))
-            return Optional.of(new ObjectTrail(dimension, color.copy(), aspectRatio));
+            return Optional.of(new ObjectTrail(dimension.copy(), color.copy(), aspectRatio));
 
         return Optional.empty();
     }
