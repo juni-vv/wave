@@ -24,4 +24,8 @@ public class Font {
         return fontInfo;
     }
 
+    public ByteBuffer getFontBuffer() {
+        return fontBuffer;
+    }
+
 }
