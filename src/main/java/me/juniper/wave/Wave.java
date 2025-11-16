@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.graphic.Window;
+import me.juniper.wave.object.BounceEnemy;
 import me.juniper.wave.object.PlayerObject;
 import me.juniper.wave.object.base.ObjectHandler;
 import me.juniper.wave.ui.management.InputManager;
@@ -35,6 +36,10 @@ public class Wave {
 
         objectHandler.addObject(
                 new PlayerObject(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(255, 255, 255),
+                        (float) WIDTH / (float) HEIGHT));
+
+        objectHandler.addObject(
+                new BounceEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(255, 0, 0),
                         (float) WIDTH / (float) HEIGHT));
 
         /* TEMPORARY */

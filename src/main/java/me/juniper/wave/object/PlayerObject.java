@@ -40,6 +40,11 @@ public class PlayerObject extends GameObject {
         dx *= speed;
         dy *= speed;
 
+        if (aspectRatio > 1.0f)
+            dx /= aspectRatio;
+
+        if (aspectRatio != 0.0f && aspectRatio <= 1.0f)
+            dy *= aspectRatio;
     }
 
     @Override

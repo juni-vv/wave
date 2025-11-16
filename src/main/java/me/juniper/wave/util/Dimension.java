@@ -22,6 +22,14 @@ public class Dimension {
         this.maxY = maxY;
     }
 
+    public boolean doesMeetConstraintX() {
+        return (minX >= 0 && x <= minX) || (maxX >= 0 && x >= maxX);
+    }
+
+    public boolean doesMeetConstraintY() {
+        return (minY >= 0 && y <= minY) || (maxY >= 0 && y >= maxY);
+    }
+
     public void clampPosition(float minX, float minY, float maxX, float maxY, Dimension aspectRatio) {
         this.minX = Math.abs(minX);
         this.minY = Math.abs(minY);
@@ -112,6 +120,22 @@ public class Dimension {
 
     public void setHeight(float height) {
         this.height = height;
+    }
+
+    public float getMinX() {
+        return minX;
+    }
+
+    public float getMinY() {
+        return minY;
+    }
+
+    public float getMaxX() {
+        return maxX;
+    }
+
+    public float getMaxY() {
+        return maxY;
     }
 
 }
