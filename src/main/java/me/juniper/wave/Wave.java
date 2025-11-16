@@ -50,7 +50,7 @@ public class Wave {
     }
 
     protected void update(float dt) {
-        objectHandler.update(dt, WIDTH, HEIGHT);
+        objectHandler.update(dt);
     }
 
     protected void render() {

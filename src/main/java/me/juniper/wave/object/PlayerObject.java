@@ -14,6 +14,8 @@ public class PlayerObject extends GameObject {
 
     public PlayerObject(Dimension dimension, Color color, float aspectRatio) {
         super(dimension, color, aspectRatio);
+
+        dimension.clampPosition(0.0f, 0.0f, 1.0f, 1.0f, dimension.aspectRatio(aspectRatio));
     }
 
     public void handleInput(InputManager inputManager) {
@@ -41,12 +43,7 @@ public class PlayerObject extends GameObject {
     }
 
     @Override
-    public void update(float dt, int sWidth, int sHeight) {
-        if (dimension.getX() < 0 || dimension.getX() + dimension.getWidth() > sWidth)
-            dx = 0;
-        if (dimension.getY() < 0 || dimension.getY() + dimension.getHeight() > sHeight)
-            dy = 0;
-
+    public void update(float dt) {
         dimension.setX(dimension.getX() + dx * dt);
         dimension.setY(dimension.getY() + dy * dt);
     }

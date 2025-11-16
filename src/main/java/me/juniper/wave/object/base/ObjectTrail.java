@@ -26,7 +26,7 @@ public class ObjectTrail extends GameObject {
     }
 
     @Override
-    public void update(float dt, int sWidth, int sHeight) {
+    public void update(float dt) {
         if (trailDurationRemaining > 0) {
             trailDurationRemaining -= 3f * dt;
 

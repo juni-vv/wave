@@ -28,9 +28,9 @@ public class ObjectHandler {
         removeQueue.remove(gameObject);
     }
 
-    public void update(float dt, int sWidth, int sHeight) {
+    public void update(float dt) {
         for (GameObject gameObject : gameObjects) {
-            gameObject.update(dt, sWidth, sHeight);
+            gameObject.update(dt);
             gameObject.objectTrail().ifPresent(addQueue::add);
 
             if (gameObject instanceof PlayerObject playerObject)

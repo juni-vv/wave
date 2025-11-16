@@ -26,7 +26,7 @@ public abstract class GameObject {
         return Optional.empty();
     }
 
-    public abstract void update(float dt, int sWidth, int sHeight);
+    public abstract void update(float dt);
 
     public abstract void render(Renderer renderer);
 
