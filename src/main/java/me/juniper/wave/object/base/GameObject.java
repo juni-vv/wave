@@ -19,7 +19,7 @@ public abstract class GameObject {
         this.aspectRatio = aspectRatio;
     }
 
-    public Optional<GameObject> objectTrail() {
+    public Optional<ObjectTrail> objectTrail() {
         if (!(this instanceof ObjectTrail))
             return Optional.of(new ObjectTrail(dimension.copy(), color.copy(), aspectRatio));
 

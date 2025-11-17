@@ -10,9 +10,13 @@ import me.juniper.wave.ui.management.InputManager;
 
 public class ObjectHandler {
 
-    private final List<GameObject> addQueue = new ArrayList<GameObject>();
+    private final List<GameObject> gameObjectAdd = new ArrayList<GameObject>();
     private final List<GameObject> gameObjects = new ArrayList<GameObject>();
-    private final List<GameObject> removeQueue = new ArrayList<GameObject>();
+    private final List<GameObject> gameObjectDel = new ArrayList<GameObject>();
+
+    private final List<GameObject> objectTrailAdd = new ArrayList<GameObject>();
+    private final List<GameObject> objectTrails = new ArrayList<GameObject>();
+    private final List<GameObject> objectTrailDel = new ArrayList<GameObject>();
 
     private InputManager inputManager;
 
@@ -21,39 +25,57 @@ public class ObjectHandler {
     }
 
     public void addObject(GameObject gameObject) {
-        addQueue.add(gameObject);
+        gameObjectAdd.add(gameObject);
     }
 
     public void removeObject(GameObject gameObject) {
-        removeQueue.remove(gameObject);
+        gameObjectDel.remove(gameObject);
     }
 
     public void update(float dt) {
         for (GameObject gameObject : gameObjects) {
             gameObject.update(dt);
-            gameObject.objectTrail().ifPresent(addQueue::add);
+            gameObject.objectTrail().ifPresent(objectTrailAdd::add);
 
             if (gameObject instanceof PlayerObject playerObject)
                 playerObject.handleInput(inputManager);
-
-            if (gameObject instanceof ObjectTrail trail)
-                if (trail.shouldDie())
-                    removeQueue.add(gameObject);
         }
 
-        gameObjects.removeAll(removeQueue);
-        gameObjects.addAll(addQueue);
-        addQueue.clear();
-        removeQueue.clear();
+        for (GameObject gameObject : objectTrails) {
+            if (gameObject instanceof ObjectTrail trail) {
+                gameObject.update(dt);
+
+                if (trail.shouldDie())
+                    objectTrailDel.add(gameObject);
+            }
+        }
+
+        gameObjects.removeAll(gameObjectDel);
+        objectTrails.removeAll(objectTrailDel);
+
+        gameObjects.addAll(gameObjectAdd);
+        objectTrails.addAll(objectTrailAdd);
+
+        gameObjectAdd.clear();
+        objectTrailAdd.clear();
+
+        gameObjectDel.clear();
+        objectTrailDel.clear();
     }
 
     public void render(Renderer renderer) {
         for (GameObject gameObject : gameObjects)
             gameObject.render(renderer);
+        for (GameObject gameObject : objectTrails)
+            gameObject.render(renderer);
     }
 
     public Stream<GameObject> getObjects() {
         return gameObjects.stream();
+    }
+
+    public Stream<ObjectTrail> getObjectTrails() {
+        return objectTrails.stream().map(o -> (ObjectTrail) o);
     }
 
 }

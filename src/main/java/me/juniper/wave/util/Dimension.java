@@ -22,6 +22,13 @@ public class Dimension {
         this.maxY = maxY;
     }
 
+    public boolean intersects(Dimension other) {
+        return getX() < other.getX() + other.getWidth() &&
+                getX() + getWidth() > other.getX() &&
+                getY() < other.getY() + other.getHeight() &&
+                getY() + getHeight() > other.getY();
+    }
+
     public boolean doesMeetConstraintX() {
         return (minX >= 0 && x <= minX) || (maxX >= 0 && x >= maxX);
     }
