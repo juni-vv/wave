@@ -15,8 +15,8 @@ public abstract class GameObject {
 
     public static final short DIRECTION_RIGHT = 0;
     public static final short DIRECTION_BOTTOM = 1;
-    public static final short DIRECTION_LEFT = 3;
-    public static final short DIRECTION_TOP = 4;
+    public static final short DIRECTION_LEFT = 2;
+    public static final short DIRECTION_TOP = 3;
 
     public GameObject(Dimension dimension, Color color, float aspectRatio) {
         this.dimension = dimension;
@@ -39,13 +39,13 @@ public abstract class GameObject {
         Dimension a = this.dimension;
         Dimension b = gameObject.dimension;
 
-        float ax = a.getX();
-        float ay = a.getY();
+        float ax = a.getRawX();
+        float ay = a.getRawY();
         float aw = ax + a.getWidth();
         float ah = ay + a.getHeight();
 
-        float bx = b.getX();
-        float by = b.getY();
+        float bx = b.getRawX();
+        float by = b.getRawY();
         float bw = bx + b.getWidth();
         float bh = by + b.getHeight();
 
@@ -61,13 +61,13 @@ public abstract class GameObject {
             float push = overlapX / 2f;
 
             if (ax < bx) {
-                a.setX(a.getX() - push);
-                b.setX(b.getX() + push);
+                a.setX(a.getRawX() - push);
+                b.setX(b.getRawX() + push);
 
                 direction = 0;
             } else {
-                a.setX(a.getX() + push);
-                b.setX(b.getX() - push);
+                a.setX(a.getRawX() + push);
+                b.setX(b.getRawX() - push);
 
                 direction = 2;
             }
@@ -76,15 +76,15 @@ public abstract class GameObject {
             float push = overlapY / 2f;
 
             if (ay < by) {
-                a.setY(a.getY() - push);
-                b.setY(b.getY() + push);
+                a.setY(a.getRawY() - push);
+                b.setY(b.getRawY() + push);
 
                 direction = 1;
             } else {
-                a.setY(a.getY() + push);
-                b.setY(b.getY() - push);
+                a.setY(a.getRawY() + push);
+                b.setY(b.getRawY() - push);
 
-                direction = 4;
+                direction = 3;
             }
         }
 

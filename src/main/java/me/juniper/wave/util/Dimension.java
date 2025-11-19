@@ -87,6 +87,10 @@ public class Dimension {
         return x;
     }
 
+    public float getRawX() {
+        return x;
+    }
+
     public float getY() {
         if (minY < 0 && maxY < 0)
             return y;
@@ -102,6 +106,10 @@ public class Dimension {
         if (y > maxY)
             return maxY;
 
+        return y;
+    }
+
+    public float getRawY() {
         return y;
     }
 
