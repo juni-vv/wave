@@ -2,6 +2,7 @@ package me.juniper.wave.object;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.object.base.Enemy;
+import me.juniper.wave.object.base.GameObject;
 import me.juniper.wave.util.Color;
 import me.juniper.wave.util.Dimension;
 
@@ -37,6 +38,15 @@ public class BounceEnemy extends Enemy {
     @Override
     public void render(Renderer renderer) {
         renderer.drawRectangle(dimension.aspectRatio(aspectRatio), color);
+    }
+
+    @Override
+    protected void collide(short direction) {
+        if (direction == GameObject.DIRECTION_BOTTOM || direction == GameObject.DIRECTION_TOP)
+            dy = -dy;
+
+        if (direction == GameObject.DIRECTION_LEFT || direction == GameObject.DIRECTION_RIGHT)
+            dx = -dx;
     }
 
 }

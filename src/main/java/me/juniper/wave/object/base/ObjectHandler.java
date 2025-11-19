@@ -39,6 +39,8 @@ public class ObjectHandler {
 
             if (gameObject instanceof PlayerObject playerObject)
                 playerObject.handleInput(inputManager);
+
+            checkCollisions(gameObject);
         }
 
         for (GameObject gameObject : objectTrails) {
@@ -68,6 +70,18 @@ public class ObjectHandler {
             gameObject.render(renderer);
         for (GameObject gameObject : objectTrails)
             gameObject.render(renderer);
+    }
+
+    public void checkCollisions(GameObject gameObjectA) {
+        for (GameObject gameObjectB : gameObjects) {
+            if (gameObjectA == gameObjectB)
+                continue;
+
+            if (gameObjectA.getDimension().intersects(gameObjectB.getDimension())) {
+                gameObjectA.onCollide(gameObjectB);
+                gameObjectB.onCollide(gameObjectA);
+            }
+        }
     }
 
     public Stream<GameObject> getObjects() {

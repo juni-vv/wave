@@ -58,4 +58,9 @@ public class PlayerObject extends GameObject {
         renderer.drawRectangle(dimension.aspectRatio(aspectRatio), color);
     }
 
+    @Override
+    protected void collide(short direction) {
+
+    }
+
 }

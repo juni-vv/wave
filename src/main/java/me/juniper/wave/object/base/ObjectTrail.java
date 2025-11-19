@@ -53,4 +53,9 @@ public class ObjectTrail extends GameObject {
         return trailDurationRemaining <= 0;
     }
 
+    @Override
+    protected void collide(short direction) {
+
+    }
+
 }
