@@ -11,7 +11,8 @@ public class BounceEnemy extends Enemy {
     public BounceEnemy(Dimension dimension, Color color, float aspectRatio) {
         super(dimension, color, aspectRatio);
 
-        dimension.clampPosition(0.0f, 0.0f, 1.0f, 1.0f, dimension.aspectRatio(aspectRatio));
+        dimension.setAspectRatio(aspectRatio);
+        dimension.clampPosition(0.0f, 0.0f, 1.0f, 1.0f);
 
         dx = 0.25f;
         dy = 0.25f;
@@ -37,7 +38,7 @@ public class BounceEnemy extends Enemy {
 
     @Override
     public void render(Renderer renderer) {
-        renderer.drawRectangle(dimension.aspectRatio(aspectRatio), color);
+        renderer.drawRectangle(dimension, color);
     }
 
     @Override

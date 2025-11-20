@@ -37,11 +37,11 @@ public class Dimension {
         return (minY >= 0 && y <= minY) || (maxY >= 0 && y >= maxY);
     }
 
-    public void clampPosition(float minX, float minY, float maxX, float maxY, Dimension aspectRatio) {
+    public void clampPosition(float minX, float minY, float maxX, float maxY) {
         this.minX = Math.abs(minX);
         this.minY = Math.abs(minY);
-        this.maxX = Math.abs(maxX - aspectRatio.getWidth());
-        this.maxY = Math.abs(maxY - aspectRatio.getHeight());
+        this.maxX = Math.abs(maxX - width);
+        this.maxY = Math.abs(maxY - height);
     }
 
     public Dimension resize(float dimensionGrowFactor) {
@@ -55,14 +55,17 @@ public class Dimension {
         return this;
     }
 
-    public Dimension aspectRatio(float aspectRatio) {
+    public Dimension setAspectRatio(float aspectRatio) {
         if (aspectRatio == 0.0f)
             return this;
 
-        if (aspectRatio > 1.0f)
-            return new Dimension(x, y, width / aspectRatio, height, minX, minY, maxX, maxY);
+        if (aspectRatio > 1.0f) {
+            this.width /= aspectRatio;
+            return this;
+        }
 
-        return new Dimension(x, y, width, height * aspectRatio, minX, minY, maxX, maxY);
+        this.height *= aspectRatio;
+        return this;
     }
 
     public Dimension copy() {

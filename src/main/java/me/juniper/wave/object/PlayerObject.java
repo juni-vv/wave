@@ -15,7 +15,8 @@ public class PlayerObject extends GameObject {
     public PlayerObject(Dimension dimension, Color color, float aspectRatio) {
         super(dimension, color, aspectRatio);
 
-        dimension.clampPosition(0.0f, 0.0f, 1.0f, 1.0f, dimension.aspectRatio(aspectRatio));
+        dimension.setAspectRatio(aspectRatio);
+        dimension.clampPosition(0.0f, 0.0f, 1.0f, 1.0f);
     }
 
     public void handleInput(InputManager inputManager) {
@@ -55,7 +56,7 @@ public class PlayerObject extends GameObject {
 
     @Override
     public void render(Renderer renderer) {
-        renderer.drawRectangle(dimension.aspectRatio(aspectRatio), color);
+        renderer.drawRectangle(dimension, color);
     }
 
     @Override
