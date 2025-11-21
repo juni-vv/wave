@@ -50,4 +50,9 @@ public class BounceEnemy extends Enemy {
             dx = -dx;
     }
 
+    @Override
+    protected void collide(GameObject gameObject) {
+
+    }
+
 }

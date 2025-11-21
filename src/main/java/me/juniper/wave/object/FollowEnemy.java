@@ -2,6 +2,7 @@ package me.juniper.wave.object;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.object.base.Enemy;
+import me.juniper.wave.object.base.GameObject;
 import me.juniper.wave.util.Color;
 import me.juniper.wave.util.Dimension;
 
@@ -24,27 +25,22 @@ public class FollowEnemy extends Enemy {
 
         float diffX = dimension.getX() - targetObject.getDimension().getX();
         float diffY = dimension.getY() - targetObject.getDimension().getY();
-        float distance = (float) Math.sqrt((float) Math.abs(diffX * diffX - diffY * diffY));
 
-        dx = ((-1 / distance) * diffX) / 10;
-        dy = ((-1 / distance) * diffY) / 10;
+        if (diffX != 0 && diffY != 0) {
+            float diff = (float) Math.sqrt((float) Math.abs(diffX * diffX) + (float) Math.abs(diffY * diffY));
+            diffX /= diff;
+            diffY /= diff;
 
-        if (dx > 0.15f)
-            dx = 0.15f;
+            diffX *= 0.15;
+            diffY *= 0.15;
+        }
 
-        if (dx < -0.15f)
-            dx = -0.15f;
-
-        if (dy > 0.15f)
-            dy = 0.15f;
-
-        if (dy < -0.15f)
-            dy = -0.15f;
+        dx = -diffX;
+        dy = -diffY;
 
         dimension.setX(dimension.getX() + dx * dt);
         dimension.setY(dimension.getY() + dy * dt);
 
-        System.out.println(distance);
     }
 
     @Override
@@ -55,6 +51,12 @@ public class FollowEnemy extends Enemy {
     @Override
     protected void collide(short direction) {
 
+    }
+
+    @Override
+    protected void collide(GameObject gameObject) {
+        if (gameObject instanceof PlayerObject)
+            shouldDie = true;
     }
 
 }

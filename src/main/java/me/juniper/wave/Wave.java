@@ -46,7 +46,7 @@ public class Wave {
                 new BounceEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(255, 0, 0),
                         (float) WIDTH / (float) HEIGHT));
 
-        Enemy followEnemy = new FollowEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(255, 0, 0),
+        Enemy followEnemy = new FollowEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(0, 255, 0),
                 (float) WIDTH / (float) HEIGHT);
 
         followEnemy.setTargetObject(playerObject);

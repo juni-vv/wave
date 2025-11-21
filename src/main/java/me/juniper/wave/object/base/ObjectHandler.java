@@ -40,6 +40,10 @@ public class ObjectHandler {
             if (gameObject instanceof PlayerObject playerObject)
                 playerObject.handleInput(inputManager);
 
+            if (gameObject instanceof Enemy enemy)
+                if (enemy.shouldDie())
+                    gameObjectDel.add(enemy);
+
             checkCollisions(gameObject);
         }
 

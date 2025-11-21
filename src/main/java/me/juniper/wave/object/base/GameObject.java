@@ -89,6 +89,12 @@ public abstract class GameObject {
         }
 
         collide(direction);
+
+        if (this instanceof Enemy enemy)
+            enemy.collide(gameObject);
+
+        if (gameObject instanceof Enemy enemy)
+            enemy.collide(this);
     }
 
     protected abstract void collide(short direction);
