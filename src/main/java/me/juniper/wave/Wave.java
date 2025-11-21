@@ -5,7 +5,10 @@ import org.lwjgl.opengl.GL11;
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.graphic.Window;
 import me.juniper.wave.object.BounceEnemy;
+import me.juniper.wave.object.FollowEnemy;
 import me.juniper.wave.object.PlayerObject;
+import me.juniper.wave.object.base.Enemy;
+import me.juniper.wave.object.base.GameObject;
 import me.juniper.wave.object.base.ObjectHandler;
 import me.juniper.wave.ui.management.InputManager;
 import me.juniper.wave.ui.management.UIManager;
@@ -34,13 +37,20 @@ public class Wave {
         uiManager = new UIManager(inputManager);
         objectHandler = new ObjectHandler(inputManager);
 
-        objectHandler.addObject(
-                new PlayerObject(new Dimension(0.5f - 0.02f, 0.5f - 0.02f, 0.04f, 0.04f), new Color(255, 255, 255),
-                        (float) WIDTH / (float) HEIGHT));
+        GameObject playerObject = new PlayerObject(new Dimension(0.5f - 0.02f, 0.5f - 0.02f, 0.04f, 0.04f),
+                new Color(255, 255, 255),
+                (float) WIDTH / (float) HEIGHT);
+        objectHandler.addObject(playerObject);
 
         objectHandler.addObject(
                 new BounceEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(255, 0, 0),
                         (float) WIDTH / (float) HEIGHT));
+
+        Enemy followEnemy = new FollowEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(255, 0, 0),
+                (float) WIDTH / (float) HEIGHT);
+
+        followEnemy.setTargetObject(playerObject);
+        objectHandler.addObject(followEnemy);
 
         /* TEMPORARY */
         // Dimension buttonDimension = new Dimension(0.4f, 0.4f, 0.2f, 0.1f);
