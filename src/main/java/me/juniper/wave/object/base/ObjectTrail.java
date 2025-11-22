@@ -54,7 +54,7 @@ public class ObjectTrail extends GameObject {
     }
 
     @Override
-    protected void collide(short direction) {
+    protected void onCollide(short direction) {
 
     }
 

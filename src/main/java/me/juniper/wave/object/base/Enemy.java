@@ -20,7 +20,7 @@ public abstract class Enemy extends GameObject {
         return targetObject;
     }
 
-    protected abstract void collide(GameObject gameObject);
+    protected abstract void onCollideWith(GameObject gameObject);
 
     public boolean shouldDie() {
         return shouldDie;

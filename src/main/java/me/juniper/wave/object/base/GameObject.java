@@ -35,7 +35,7 @@ public abstract class GameObject {
 
     public abstract void render(Renderer renderer);
 
-    public void onCollide(GameObject gameObject) {
+    public void calculateCollision(GameObject gameObject) {
         Dimension a = this.dimension;
         Dimension b = gameObject.dimension;
 
@@ -88,16 +88,16 @@ public abstract class GameObject {
             }
         }
 
-        collide(direction);
+        onCollide(direction);
 
         if (this instanceof Enemy enemy)
-            enemy.collide(gameObject);
+            enemy.onCollideWith(gameObject);
 
         if (gameObject instanceof Enemy enemy)
-            enemy.collide(this);
+            enemy.onCollideWith(this);
     }
 
-    protected abstract void collide(short direction);
+    protected abstract void onCollide(short direction);
 
     public Dimension getDimension() {
         return dimension;

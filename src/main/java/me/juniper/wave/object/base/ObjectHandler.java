@@ -82,8 +82,8 @@ public class ObjectHandler {
                 continue;
 
             if (gameObjectA.getDimension().intersects(gameObjectB.getDimension())) {
-                gameObjectA.onCollide(gameObjectB);
-                gameObjectB.onCollide(gameObjectA);
+                gameObjectA.calculateCollision(gameObjectB);
+                gameObjectB.calculateCollision(gameObjectA);
             }
         }
     }

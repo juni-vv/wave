@@ -49,12 +49,12 @@ public class FollowEnemy extends Enemy {
     }
 
     @Override
-    protected void collide(short direction) {
+    protected void onCollide(short direction) {
 
     }
 
     @Override
-    protected void collide(GameObject gameObject) {
+    protected void onCollideWith(GameObject gameObject) {
         if (gameObject instanceof PlayerObject)
             shouldDie = true;
     }
