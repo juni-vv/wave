@@ -40,9 +40,8 @@ public class ObjectHandler {
             if (gameObject instanceof PlayerObject playerObject)
                 playerObject.handleInput(inputManager);
 
-            if (gameObject instanceof Enemy enemy)
-                if (enemy.shouldDie())
-                    gameObjectDel.add(enemy);
+            if (gameObject.shouldDie())
+                gameObjectDel.add(gameObject);
 
             checkCollisions(gameObject);
         }
@@ -53,6 +52,11 @@ public class ObjectHandler {
 
                 if (trail.shouldDie())
                     objectTrailDel.add(gameObject);
+
+                GameObject parent = trail.getParent();
+                if (!(parent instanceof PlayerObject))
+                    if (parent.shouldDie())
+                        objectTrailDel.add(gameObject);
             }
         }
 

@@ -10,13 +10,16 @@ import me.juniper.wave.util.Dimension;
 
 public class PlayerObject extends GameObject {
 
+    private short health;
     private float speed = 0.25f;
 
-    public PlayerObject(Dimension dimension, Color color, float aspectRatio) {
+    public PlayerObject(Dimension dimension, Color color, float aspectRatio, short health) {
         super(dimension, color, aspectRatio);
 
         dimension.setAspectRatio(aspectRatio);
         dimension.clampPosition(0.0f, 0.0f, 1.0f, 1.0f);
+
+        this.health = health <= 0 ? 3 : health;
     }
 
     public void handleInput(InputManager inputManager) {
@@ -61,7 +64,20 @@ public class PlayerObject extends GameObject {
 
     @Override
     protected void onCollide(short direction) {
-
+        health--;
     }
 
+    @Override
+    public boolean shouldDie() {
+        return health <= 0;
+    }
+
+    public void setHealth(short health) {
+        assert health >= 0;
+        this.health = health < 0 ? 0 : health;
+    }
+
+    public short getHealth() {
+        return health;
+    }
 }

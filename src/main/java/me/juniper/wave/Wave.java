@@ -39,7 +39,8 @@ public class Wave {
 
         GameObject playerObject = new PlayerObject(new Dimension(0.5f - 0.02f, 0.5f - 0.02f, 0.04f, 0.04f),
                 new Color(255, 255, 255),
-                (float) WIDTH / (float) HEIGHT);
+                (float) WIDTH / (float) HEIGHT,
+                (short) 3);
         objectHandler.addObject(playerObject);
 
         objectHandler.addObject(

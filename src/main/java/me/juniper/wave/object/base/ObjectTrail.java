@@ -12,13 +12,16 @@ public class ObjectTrail extends GameObject {
     private float trailDurationRemaining;
     private float alphaInitial;
 
-    public ObjectTrail(Dimension dimension, Color color, float aspectRatio) {
+    private GameObject parent;
+
+    public ObjectTrail(Dimension dimension, Color color, float aspectRatio, GameObject parent) {
         super(dimension, color, aspectRatio);
 
         this.trailDurationInitial = 0.5f;
         this.trailDurationRemaining = 0.5f;
 
         this.alphaInitial = color.getAlpha();
+        this.parent = parent;
     }
 
     private void updateAlpha() {
@@ -56,6 +59,10 @@ public class ObjectTrail extends GameObject {
     @Override
     protected void onCollide(short direction) {
 
+    }
+
+    public GameObject getParent() {
+        return parent;
     }
 
 }

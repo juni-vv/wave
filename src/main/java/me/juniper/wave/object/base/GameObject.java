@@ -26,7 +26,7 @@ public abstract class GameObject {
 
     public Optional<ObjectTrail> objectTrail() {
         if (!(this instanceof ObjectTrail))
-            return Optional.of(new ObjectTrail(dimension.copy(), color.copy(), aspectRatio));
+            return Optional.of(new ObjectTrail(dimension.copy(), color.copy(), aspectRatio, this));
 
         return Optional.empty();
     }
@@ -98,6 +98,10 @@ public abstract class GameObject {
     }
 
     protected abstract void onCollide(short direction);
+
+    public boolean shouldDie() {
+        return false;
+    }
 
     public Dimension getDimension() {
         return dimension;
