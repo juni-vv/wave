@@ -52,11 +52,6 @@ public class ObjectHandler {
 
                 if (trail.shouldDie())
                     objectTrailDel.add(gameObject);
-
-                GameObject parent = trail.getParent();
-                if (!(parent instanceof PlayerObject))
-                    if (parent.shouldDie())
-                        objectTrailDel.add(gameObject);
             }
         }
 

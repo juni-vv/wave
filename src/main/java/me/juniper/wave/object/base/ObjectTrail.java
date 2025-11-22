@@ -12,16 +12,16 @@ public class ObjectTrail extends GameObject {
     private float trailDurationRemaining;
     private float alphaInitial;
 
-    private GameObject parent;
+    private DeathCallback callback;
 
-    public ObjectTrail(Dimension dimension, Color color, float aspectRatio, GameObject parent) {
+    public ObjectTrail(Dimension dimension, Color color, float aspectRatio, DeathCallback callback) {
         super(dimension, color, aspectRatio);
 
         this.trailDurationInitial = 0.5f;
         this.trailDurationRemaining = 0.5f;
 
         this.alphaInitial = color.getAlpha();
-        this.parent = parent;
+        this.callback = callback;
     }
 
     private void updateAlpha() {
@@ -53,7 +53,7 @@ public class ObjectTrail extends GameObject {
     }
 
     public boolean shouldDie() {
-        return trailDurationRemaining <= 0;
+        return trailDurationRemaining <= 0 || callback.shouldDie();
     }
 
     @Override
@@ -61,8 +61,8 @@ public class ObjectTrail extends GameObject {
 
     }
 
-    public GameObject getParent() {
-        return parent;
+    interface DeathCallback {
+        boolean shouldDie();
     }
 
 }

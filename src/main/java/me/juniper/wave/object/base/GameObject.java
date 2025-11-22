@@ -3,6 +3,7 @@ package me.juniper.wave.object.base;
 import java.util.Optional;
 
 import me.juniper.wave.graphic.Renderer;
+import me.juniper.wave.object.PlayerObject;
 import me.juniper.wave.util.Color;
 import me.juniper.wave.util.Dimension;
 
@@ -26,7 +27,11 @@ public abstract class GameObject {
 
     public Optional<ObjectTrail> objectTrail() {
         if (!(this instanceof ObjectTrail))
-            return Optional.of(new ObjectTrail(dimension.copy(), color.copy(), aspectRatio, this));
+            return Optional.of(new ObjectTrail(dimension.copy(), color.copy(), aspectRatio, () -> {
+                if (!(this instanceof PlayerObject))
+                    return shouldDie();
+                return false;
+            }));
 
         return Optional.empty();
     }
