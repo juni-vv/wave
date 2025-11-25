@@ -8,8 +8,12 @@ import me.juniper.wave.util.Dimension;
 
 public class FollowEnemy extends Enemy {
 
-    public FollowEnemy(Dimension dimension, Color color, float aspectRatio) {
+    private DeathCallback deathCallback;
+
+    public FollowEnemy(Dimension dimension, Color color, float aspectRatio, DeathCallback deathCallback) {
         super(dimension, color, aspectRatio);
+
+        this.deathCallback = deathCallback;
 
         dimension.setAspectRatio(aspectRatio);
         dimension.clampPosition(0.0f, 0.0f, 1.0f, 1.0f);
@@ -55,8 +59,17 @@ public class FollowEnemy extends Enemy {
 
     @Override
     protected void onCollideWith(GameObject gameObject) {
-        if (gameObject instanceof PlayerObject)
+        if (gameObject instanceof PlayerObject) {
             shouldDie = true;
+        }
+    }
+
+    public void onDeath() {
+        deathCallback.onDeathCallback();
+    }
+
+    public interface DeathCallback {
+        public void onDeathCallback();
     }
 
 }

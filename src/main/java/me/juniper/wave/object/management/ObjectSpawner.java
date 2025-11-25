@@ -5,7 +5,6 @@ import me.juniper.wave.object.FollowEnemy;
 import me.juniper.wave.object.PlayerObject;
 import me.juniper.wave.object.base.Enemy;
 import me.juniper.wave.object.base.GameObject;
-import me.juniper.wave.object.base.ObjectHandler;
 import me.juniper.wave.util.Color;
 import me.juniper.wave.util.Dimension;
 
@@ -28,15 +27,30 @@ public class ObjectSpawner {
                 new BounceEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(255, 0, 0),
                         aspectRatio));
 
-        Enemy followEnemy = new FollowEnemy(new Dimension(0f, 0f, 0.04f, 0.04f), new Color(0, 255, 0),
-                aspectRatio);
-
+        Enemy followEnemy = followEnemy();
         followEnemy.setTargetObject(playerObject);
         objectHandler.addObject(followEnemy);
     }
 
     public void update(float dt) {
 
+    }
+
+    private Enemy followEnemy() {
+        return new FollowEnemy(new Dimension(
+                0f, 0f,
+                0.04f, 0.04f),
+                new Color(0, 255, 0),
+                aspectRatio, () -> respawnFollowEnemy());
+    }
+
+    private void spawn(GameObject gameObject) {
+        objectHandler.addObject(gameObject);
+    }
+
+    private void respawnFollowEnemy() {
+        if (!objectHandler.hasObjectType(FollowEnemy.class))
+            spawn(followEnemy());
     }
 
 }

@@ -61,7 +61,7 @@ public class ObjectTrail extends GameObject {
 
     }
 
-    interface DeathCallback {
+    public interface DeathCallback {
         boolean shouldDie();
     }
 

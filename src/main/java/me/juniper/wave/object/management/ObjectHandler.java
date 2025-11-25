@@ -1,11 +1,14 @@
-package me.juniper.wave.object.base;
+package me.juniper.wave.object.management;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 import me.juniper.wave.graphic.Renderer;
+import me.juniper.wave.object.FollowEnemy;
 import me.juniper.wave.object.PlayerObject;
+import me.juniper.wave.object.base.GameObject;
+import me.juniper.wave.object.base.ObjectTrail;
 import me.juniper.wave.ui.management.InputManager;
 
 public class ObjectHandler {
@@ -32,6 +35,21 @@ public class ObjectHandler {
         gameObjectDel.remove(gameObject);
     }
 
+    public boolean hasObject(GameObject gameObject) {
+        if (!gameObjects.contains(gameObject))
+            return false;
+
+        return !gameObjectDel.contains(gameObject);
+    }
+
+    public boolean hasObjectType(Class<? extends GameObject> type) {
+        for (GameObject obj : gameObjects) {
+            if (type.isInstance(obj) && !gameObjectDel.contains(obj))
+                return true;
+        }
+        return false;
+    }
+
     public void update(float dt) {
         for (GameObject gameObject : gameObjects) {
             gameObject.update(dt);
@@ -40,8 +58,12 @@ public class ObjectHandler {
             if (gameObject instanceof PlayerObject playerObject)
                 playerObject.handleInput(inputManager);
 
-            if (gameObject.shouldDie())
+            if (gameObject.shouldDie()) {
                 gameObjectDel.add(gameObject);
+
+                if (gameObject instanceof FollowEnemy enemy)
+                    enemy.onDeath();
+            }
 
             checkCollisions(gameObject);
         }
