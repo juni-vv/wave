@@ -13,13 +13,15 @@ public class ObjectSpawner {
     private ObjectHandler objectHandler;
     private float aspectRatio;
 
+    private PlayerObject playerObject;
+
     public ObjectSpawner(ObjectHandler objectHandler, float aspectRatio) {
         this.objectHandler = objectHandler;
         this.aspectRatio = aspectRatio;
     }
 
     public void startGame() {
-        GameObject playerObject = new PlayerObject(new Dimension(0.5f - 0.02f, 0.5f - 0.02f, 0.04f, 0.04f),
+        playerObject = new PlayerObject(new Dimension(0.5f - 0.02f, 0.5f - 0.02f, 0.04f, 0.04f),
                 new Color(255, 255, 255), aspectRatio, (short) 3);
         objectHandler.addObject(playerObject);
 
@@ -37,11 +39,13 @@ public class ObjectSpawner {
     }
 
     private Enemy followEnemy() {
-        return new FollowEnemy(new Dimension(
+        Enemy enemy = new FollowEnemy(new Dimension(
                 0f, 0f,
                 0.04f, 0.04f),
                 new Color(0, 255, 0),
                 aspectRatio, () -> respawnFollowEnemy());
+        enemy.setTargetObject(playerObject);
+        return enemy;
     }
 
     private void spawn(GameObject gameObject) {
