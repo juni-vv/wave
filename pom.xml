@@ -63,6 +63,12 @@
 			<artifactId>lwjgl-glfw</artifactId>
 		</dependency>
 
+		<!-- STB -->
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-stb</artifactId>
+		</dependency>
+
 		<!-- Windows natives -->
 		<dependency>
 			<groupId>org.lwjgl</groupId>
@@ -80,7 +86,7 @@
 			<classifier>natives-windows</classifier>
 		</dependency>
 
-		<!-- macOS (Intel & ARM) natives -->
+		<!-- macOS Intel -->
 		<dependency>
 			<groupId>org.lwjgl</groupId>
 			<artifactId>lwjgl</artifactId>
@@ -96,11 +102,22 @@
 			<artifactId>lwjgl-glfw</artifactId>
 			<classifier>natives-macos</classifier>
 		</dependency>
+
+		<!-- macOS ARM64 -->
 		<dependency>
 			<groupId>org.lwjgl</groupId>
-			<artifactId>lwjgl-stb</artifactId>
+			<artifactId>lwjgl</artifactId>
+			<classifier>natives-macos-arm64</classifier>
 		</dependency>
-
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-opengl</artifactId>
+			<classifier>natives-macos-arm64</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-glfw</artifactId>
+			<classifier>natives-macos-arm64</classifier>
+		</dependency>
 	</dependencies>
-
 </project>
