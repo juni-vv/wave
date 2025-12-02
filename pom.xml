@@ -44,7 +44,6 @@
 	</dependencyManagement>
 
 	<dependencies>
-
 		<!-- Core LWJGL -->
 		<dependency>
 			<groupId>org.lwjgl</groupId>
@@ -67,6 +66,13 @@
 		<dependency>
 			<groupId>org.lwjgl</groupId>
 			<artifactId>lwjgl-stb</artifactId>
+		</dependency>
+
+		<!-- JOML -->
+		<dependency>
+			<groupId>org.joml</groupId>
+			<artifactId>joml</artifactId>
+			<version>1.10.7</version>
 		</dependency>
 
 		<!-- Windows natives -->

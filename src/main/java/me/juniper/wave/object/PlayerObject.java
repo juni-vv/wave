@@ -1,5 +1,6 @@
 package me.juniper.wave.object;
 
+import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;
 
 import me.juniper.wave.graphic.Renderer;
@@ -23,26 +24,26 @@ public class PlayerObject extends GameObject {
     }
 
     public void handleInput(InputManager inputManager) {
-        dx = 0;
-        dy = 0;
+        Vector2f direction = new Vector2f(0, 0);
 
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_W))
-            dy = -1;
+            direction.y += -1;
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_A))
-            dx = -1;
+            direction.x += -1;
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_S))
-            dy = 1;
+            direction.y += 1;
         if (inputManager.isKeyDown(GLFW.GLFW_KEY_D))
-            dx = 1;
+            direction.x += 1;
 
-        if (dx != 0 && dy != 0) {
-            float diff = (float) Math.sqrt(Math.abs(dx * dx) + Math.abs(dy * dy));
-            dx /= diff;
-            dy /= diff;
+        if (!direction.equals(0, 0)) {
+            direction = direction.normalize();
+            direction = direction.mul(speed);
         }
 
-        dx *= speed;
-        dy *= speed;
+        System.out.println("Vector: " + direction.toString());
+
+        dx = direction.x;
+        dy = direction.y;
 
         if (aspectRatio > 1.0f)
             dx /= aspectRatio;
