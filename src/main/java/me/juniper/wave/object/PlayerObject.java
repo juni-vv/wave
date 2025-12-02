@@ -12,7 +12,7 @@ import me.juniper.wave.util.Dimension;
 public class PlayerObject extends GameObject {
 
     private short health;
-    private float speed = 0.25f;
+    private final float speed = 0.25f;
 
     public PlayerObject(Dimension dimension, Color color, float aspectRatio, short health) {
         super(dimension, color, aspectRatio);
@@ -36,20 +36,16 @@ public class PlayerObject extends GameObject {
             direction.x += 1;
 
         if (!direction.equals(0, 0)) {
-            direction = direction.normalize();
-            direction = direction.mul(speed);
+            Vector2f aspectRatioVector = new Vector2f(1 / aspectRatio, 1);
+            direction = direction.normalize().mul(speed).mul(aspectRatioVector);
         }
 
-        System.out.println("Vector: " + direction.toString());
+        System.out.println("Vector: " + direction.toString() + ", total speed: " + direction.length());
 
         dx = direction.x;
         dy = direction.y;
 
-        if (aspectRatio > 1.0f)
-            dx /= aspectRatio;
 
-        if (aspectRatio != 0.0f && aspectRatio <= 1.0f)
-            dy *= aspectRatio;
     }
 
     @Override

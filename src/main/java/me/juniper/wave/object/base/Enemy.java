@@ -22,6 +22,7 @@ public abstract class Enemy extends GameObject {
 
     protected abstract void onCollideWith(GameObject gameObject);
 
+    @Override
     public boolean shouldDie() {
         return shouldDie;
     }

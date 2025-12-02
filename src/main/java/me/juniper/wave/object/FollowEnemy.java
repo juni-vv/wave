@@ -9,8 +9,8 @@ import me.juniper.wave.util.Dimension;
 
 public class FollowEnemy extends Enemy {
 
-    private DeathCallback deathCallback;
-    final private float speed = 0.15f;
+    private final DeathCallback deathCallback;
+    private final float speed = 0.15f;
 
     public FollowEnemy(Dimension dimension, Color color, float aspectRatio, DeathCallback deathCallback) {
         super(dimension, color, aspectRatio);
@@ -32,15 +32,20 @@ public class FollowEnemy extends Enemy {
         float diffX = targetObject.getDimension().getX() - dimension.getX();
         float diffY = targetObject.getDimension().getY() - dimension.getY();
         Vector2f direction = new Vector2f(diffX, diffY);
-        direction.normalize();
-        direction.mul(speed);
+        if (!direction.equals(0, 0)){
+            Vector2f aspectRatioVector = new Vector2f(1 / aspectRatio, 1);
+            direction = direction.normalize().mul(speed).mul(aspectRatioVector);
+            assert direction.length() == speed;
+        }
+        // ;
+        // direction = direction.mul(aspectRatioVector);
+        System.out.println("Vector: " + direction.toString() + ", total speed: " + direction.length());
 
         dx = direction.x;
         dy = direction.y;
 
         dimension.setX(dimension.getX() + dx * dt);
         dimension.setY(dimension.getY() + dy * dt);
-
     }
 
     @Override

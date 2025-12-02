@@ -11,7 +11,7 @@ import me.juniper.wave.util.Dimension;
 public class ObjectSpawner {
 
     private ObjectHandler objectHandler;
-    private float aspectRatio;
+    private final float aspectRatio;
 
     private PlayerObject playerObject;
 
