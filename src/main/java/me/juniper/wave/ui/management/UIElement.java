@@ -1,6 +1,7 @@
 package me.juniper.wave.ui.management;
 
 import me.juniper.wave.graphic.Renderer;
+import me.juniper.wave.graphic.Window;
 import me.juniper.wave.util.Dimension;
 
 public abstract class UIElement {
@@ -8,10 +9,12 @@ public abstract class UIElement {
     protected Dimension dimension;
     protected InputManager inputManager;
 
+    protected Window window;
+
     protected float hoverGrowFactor;
     protected boolean hoverGrowActive = false;
 
-    public UIElement(Dimension dimension) {
+    public UIElement(Window window, Dimension dimension) {
         this.dimension = dimension;
         this.hoverGrowFactor = 0.0f;
     }
