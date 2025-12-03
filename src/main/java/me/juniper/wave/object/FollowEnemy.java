@@ -1,5 +1,6 @@
 package me.juniper.wave.object;
 
+import org.joml.Vector2f;
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.object.base.Enemy;
 import me.juniper.wave.object.base.GameObject;
@@ -8,7 +9,8 @@ import me.juniper.wave.util.Dimension;
 
 public class FollowEnemy extends Enemy {
 
-    private DeathCallback deathCallback;
+    private final DeathCallback deathCallback;
+    private final float speed = 0.15f;
 
     public FollowEnemy(Dimension dimension, Color color, float aspectRatio, DeathCallback deathCallback) {
         super(dimension, color, aspectRatio);
@@ -27,24 +29,23 @@ public class FollowEnemy extends Enemy {
         if (!(targetObject instanceof PlayerObject))
             return;
 
-        float diffX = dimension.getX() - targetObject.getDimension().getX();
-        float diffY = dimension.getY() - targetObject.getDimension().getY();
-
-        if (diffX != 0 && diffY != 0) {
-            float diff = (float) Math.sqrt((float) Math.abs(diffX * diffX) + (float) Math.abs(diffY * diffY));
-            diffX /= diff;
-            diffY /= diff;
-
-            diffX *= 0.15;
-            diffY *= 0.15;
+        float diffX = targetObject.getDimension().getX() - dimension.getX();
+        float diffY = targetObject.getDimension().getY() - dimension.getY();
+        Vector2f direction = new Vector2f(diffX, diffY);
+        if (!direction.equals(0, 0)){
+            Vector2f aspectRatioVector = new Vector2f(1 / aspectRatio, 1);
+            direction = direction.normalize().mul(speed).mul(aspectRatioVector);
+            assert direction.length() == speed;
         }
+        // ;
+        // direction = direction.mul(aspectRatioVector);
+        System.out.println("Vector: " + direction.toString() + ", total speed: " + direction.length());
 
-        dx = -diffX;
-        dy = -diffY;
+        dx = direction.x;
+        dy = direction.y;
 
         dimension.setX(dimension.getX() + dx * dt);
         dimension.setY(dimension.getY() + dy * dt);
-
     }
 
     @Override
