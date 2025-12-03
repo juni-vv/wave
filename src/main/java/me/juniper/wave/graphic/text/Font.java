@@ -2,8 +2,6 @@ package me.juniper.wave.graphic.text;
 
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.stb.STBTTFontinfo;

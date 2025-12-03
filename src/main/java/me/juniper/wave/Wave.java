@@ -5,11 +5,14 @@ import org.lwjgl.opengl.GL11;
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.graphic.Window;
 import me.juniper.wave.graphic.text.Font;
+import me.juniper.wave.graphic.text.FontTexture;
+import me.juniper.wave.graphic.text.Text;
 import me.juniper.wave.object.management.ObjectHandler;
 import me.juniper.wave.object.management.ObjectSpawner;
 import me.juniper.wave.ui.management.InputManager;
 import me.juniper.wave.ui.management.UIManager;
 import me.juniper.wave.util.Color;
+import me.juniper.wave.util.Dimension;
 
 public class Wave {
 
@@ -26,10 +29,14 @@ public class Wave {
     private ObjectHandler objectHandler;
     private ObjectSpawner objectSpawner;
 
+    Font font = null;
+    FontTexture ft = null;
+    Text text = null;
+
     public Wave() {
         window = new Window(WIDTH, HEIGHT, "Wave"); // TODO: get values from env file
         inputManager = new InputManager(window);
-        renderer = new Renderer();
+        renderer = new Renderer(WIDTH, HEIGHT);
 
         uiManager = new UIManager(inputManager);
         objectHandler = new ObjectHandler(inputManager);
@@ -38,9 +45,10 @@ public class Wave {
         objectSpawner.startGame(); // Temporary
 
         try {
-            Font font = new Font("/fonts/Montserrat-Bold.ttf");
+            font = new Font("/fonts/Montserrat-Bold.ttf");
+            ft = new FontTexture(font, 20);
+            text = new Text("Hello", ft, new Color(255, 255, 255), new Dimension(0, 0, 10, 10));
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -65,6 +73,8 @@ public class Wave {
         renderer.clear(new Color(0x000));
 
         GL11.glLoadIdentity();
+
+        renderer.drawText(text);
 
         objectHandler.render(renderer);
         uiManager.render(renderer);
