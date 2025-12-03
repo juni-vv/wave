@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Wave",
+            "request": "launch",
+            "mainClass": "me.juniper.Main",
+            "vmArgs": [
+                "-Djava.library.path=",
+                "-Dorg.lwjgl.util.Debug=true"
+            ]
+        }
+    ]
+}

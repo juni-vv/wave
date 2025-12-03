@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import me.juniper.wave.graphic.Renderer;
 import me.juniper.wave.graphic.Window;
+import me.juniper.wave.graphic.text.Font;
 import me.juniper.wave.object.management.ObjectHandler;
 import me.juniper.wave.object.management.ObjectSpawner;
 import me.juniper.wave.ui.management.InputManager;
@@ -35,6 +36,13 @@ public class Wave {
         objectSpawner = new ObjectSpawner(objectHandler, (float) WIDTH / (float) HEIGHT);
 
         objectSpawner.startGame(); // Temporary
+
+        try {
+            Font font = new Font("/fonts/Montserrat-Bold.ttf");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         /* TEMPORARY */
         // Dimension buttonDimension = new Dimension(0.4f, 0.4f, 0.2f, 0.1f);
