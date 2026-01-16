@@ -8,7 +8,7 @@ import me.juniper.wave.util.Dimension;
 
 public class FollowEnemy extends Enemy {
 
-    private DeathCallback deathCallback;
+    private final DeathCallback deathCallback;
 
     public FollowEnemy(Dimension dimension, Color color, float aspectRatio, DeathCallback deathCallback) {
         super(dimension, color, aspectRatio);

@@ -15,15 +15,15 @@ public class Wave {
     private final int WIDTH = 1280;
     private final int HEIGHT = 720;
 
-    private Window window;
-    private InputManager inputManager;
-    private Renderer renderer;
+    private final Window window;
+    private final InputManager inputManager;
+    private final Renderer renderer;
 
-    private WaveLoop waveLoop;
+    private final WaveLoop waveLoop;
 
-    private UIManager uiManager;
-    private ObjectHandler objectHandler;
-    private ObjectSpawner objectSpawner;
+    private final UIManager uiManager;
+    private final ObjectHandler objectHandler;
+    private final ObjectSpawner objectSpawner;
 
     public Wave() {
         window = new Window(WIDTH, HEIGHT, "Wave"); // TODO: get values from env file

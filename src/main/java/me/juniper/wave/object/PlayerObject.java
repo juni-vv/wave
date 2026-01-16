@@ -11,7 +11,7 @@ import me.juniper.wave.util.Dimension;
 public class PlayerObject extends GameObject {
 
     private short health;
-    private float speed = 0.25f;
+    private final float speed = 0.25f;
 
     public PlayerObject(Dimension dimension, Color color, float aspectRatio, short health) {
         super(dimension, color, aspectRatio);
